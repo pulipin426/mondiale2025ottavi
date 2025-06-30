@@ -4,34 +4,64 @@
 <meta charset="UTF-8" />
 <title>Mondiale 2025 - Ottavi & Antepost</title>
 <style>
-  body { font-family: Arial, sans-serif; padding: 20px; }
-  nav { margin-bottom: 10px; }
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #121212;
+    color: #eee;
+    margin: 0;
+    padding: 20px;
+  }
+  h1 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #00b894;
+    text-shadow: 0 0 8px #00b894aa;
+  }
+  nav {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 15px;
+    gap: 15px;
+  }
   button {
-    padding: 8px 16px;
-    margin-right: 5px;
+    background: #2d3436;
+    border: none;
+    padding: 12px 28px;
+    font-size: 1.1rem;
+    color: #bbb;
+    border-radius: 30px;
     cursor: pointer;
-    border: 1px solid #444;
-    background: #eee;
+    box-shadow: 0 0 6px #0005;
+    transition: all 0.3s ease;
+  }
+  button:hover {
+    color: #00b894;
+    box-shadow: 0 0 15px #00b894cc;
+    transform: scale(1.05);
   }
   button.active {
-    background: #444;
-    color: white;
+    background: #00b894;
+    color: #121212;
+    box-shadow: 0 0 20px #00b894ee;
   }
   iframe {
     width: 100%;
-    height: 900px;
+    height: 850px;
     border: none;
+    border-radius: 10px;
+    box-shadow: 0 0 15px #00b89488;
+    transition: opacity 0.5s ease;
   }
 </style>
 </head>
 <body>
   <h1>Mondiale 2025 - Ottavi & Antepost</h1>
   <nav>
-    <button id="btnOttavi" class="active">Ottavi</button>
-    <button id="btnAntepost">Antepost</button>
+    <button id="btnOttavi" class="active" aria-selected="true">Ottavi</button>
+    <button id="btnAntepost" aria-selected="false">Antepost</button>
   </nav>
   <iframe id="iframeOttavi" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTemeUGqWbhHUbfr-_GhTLh-UbsfJEvqPxMhXeZUvjt1F8lWFCbKQRT2fBK9Zp08-WWJxeJ1ydw0VmQ/pubhtml?gid=382047071&single=true&widget=true&headers=false"></iframe>
-  <iframe id="iframeAntepost" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ-3LtU5v_4y4BtBt-9ea_Tc2SoSZDMvcC-QaZ9e_HtjjwoebEejAQxlplvuWpgAkFiyzDzZqLGOGtX/pubhtml?gid=782591832&single=true&widget=true&headers=false" style="display:none;"></iframe>
+  <iframe id="iframeAntepost" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ-3LtU5v_4y4BtBt-9ea_Tc2SoSZDMvcC-QaZ9e_HtjjwoebEejAQxlplvuWpgAkFiyzDzZqLGOGtX/pubhtml?gid=782591832&single=true&widget=true&headers=false" style="display:none;opacity:0;"></iframe>
 
 <script>
   const btnOttavi = document.getElementById('btnOttavi');
@@ -42,15 +72,25 @@
   btnOttavi.addEventListener('click', () => {
     btnOttavi.classList.add('active');
     btnAntepost.classList.remove('active');
+    btnOttavi.setAttribute('aria-selected', 'true');
+    btnAntepost.setAttribute('aria-selected', 'false');
+
     iframeOttavi.style.display = 'block';
-    iframeAntepost.style.display = 'none';
+    iframeOttavi.style.opacity = '1';
+    iframeAntepost.style.opacity = '0';
+    setTimeout(() => iframeAntepost.style.display = 'none', 500);
   });
 
   btnAntepost.addEventListener('click', () => {
     btnAntepost.classList.add('active');
     btnOttavi.classList.remove('active');
+    btnAntepost.setAttribute('aria-selected', 'true');
+    btnOttavi.setAttribute('aria-selected', 'false');
+
     iframeAntepost.style.display = 'block';
-    iframeOttavi.style.display = 'none';
+    iframeAntepost.style.opacity = '1';
+    iframeOttavi.style.opacity = '0';
+    setTimeout(() => iframeOttavi.style.display = 'none', 500);
   });
 </script>
 </body>
