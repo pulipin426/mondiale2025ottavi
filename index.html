@@ -1,22 +1,57 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Mondiale 2025 - Ottavi in poi | Pronostici & Statistiche Live</title>
-  <style>
-    body, html {
-      margin: 0; padding: 0; height: 100%;
-    }
-    iframe {
-      border: none;
-      width: 100%;
-      height: 100vh;
-      display: block;
-    }
-  </style>
+<meta charset="UTF-8" />
+<title>Mondiale 2025 - Ottavi & Antepost</title>
+<style>
+  body { font-family: Arial, sans-serif; padding: 20px; }
+  nav { margin-bottom: 10px; }
+  button {
+    padding: 8px 16px;
+    margin-right: 5px;
+    cursor: pointer;
+    border: 1px solid #444;
+    background: #eee;
+  }
+  button.active {
+    background: #444;
+    color: white;
+  }
+  iframe {
+    width: 100%;
+    height: 900px;
+    border: none;
+  }
+</style>
 </head>
 <body>
-  <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTemeUGqWbhHUbfr-_GhTLh-UbsfJEvqPxMhXeZUvjt1F8lWFCbKQRT2fBK9Zp08-WWJxeJ1ydw0VmQ/pubhtml?gid=382047071&single=true&widget=true&headers=false" allowfullscreen></iframe>
+  <h1>Mondiale 2025 - Ottavi & Antepost</h1>
+  <nav>
+    <button id="btnOttavi" class="active">Ottavi</button>
+    <button id="btnAntepost">Antepost</button>
+  </nav>
+  <iframe id="iframeOttavi" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTemeUGqWbhHUbfr-_GhTLh-UbsfJEvqPxMhXeZUvjt1F8lWFCbKQRT2fBK9Zp08-WWJxeJ1ydw0VmQ/pubhtml?gid=382047071&single=true&widget=true&headers=false"></iframe>
+  <iframe id="iframeAntepost" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ-3LtU5v_4y4BtBt-9ea_Tc2SoSZDMvcC-QaZ9e_HtjjwoebEejAQxlplvuWpgAkFiyzDzZqLGOGtX/pubhtml?gid=782591832&single=true&widget=true&headers=false" style="display:none;"></iframe>
+
+<script>
+  const btnOttavi = document.getElementById('btnOttavi');
+  const btnAntepost = document.getElementById('btnAntepost');
+  const iframeOttavi = document.getElementById('iframeOttavi');
+  const iframeAntepost = document.getElementById('iframeAntepost');
+
+  btnOttavi.addEventListener('click', () => {
+    btnOttavi.classList.add('active');
+    btnAntepost.classList.remove('active');
+    iframeOttavi.style.display = 'block';
+    iframeAntepost.style.display = 'none';
+  });
+
+  btnAntepost.addEventListener('click', () => {
+    btnAntepost.classList.add('active');
+    btnOttavi.classList.remove('active');
+    iframeAntepost.style.display = 'block';
+    iframeOttavi.style.display = 'none';
+  });
+</script>
 </body>
 </html>
